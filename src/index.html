@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <script>
+    $(function(){
+        $('button').click(function () {
+            $.ajax({
+                url: '/cgi-bin/sample.py',
+                type: 'post',
+                data: {
+                    text:$('textarea').val(), 
+                    ip:$('#ip').val(),
+                    emotion:$('#emotion').val(),
+                    speed:Number($('#speed').val())
+                }
+            }).done(function(data){
+                console.log(data);
+            }).fail(function(){
+                console.log('failed');
+            });
+        });
+    });
+    </script>
+
+</head>
+<body>
+    <label>robot's ip: </label><input id='ip' type="text" value="192.168.11.x">
+    <div>
+        <label>感情: </label><select id="emotion">
+            <option value="normal">通常</option>
+            <option value="happy">幸せ</option>
+            <option value="bashful">照れ・内気</option>
+            <option value="angry">怒り</option>
+            <option value="sad">悲しみ</option>
+            </select>
+    </div>
+    <div><label>話速(0.5～2.0, 標準: 1.0): </label><input id='speed' type="text" value="1.0"></div>
+    <p></p>
+        
+    <div>発話させたい文章を記入してください。</div>
+    <textarea rows="8" cols="80"></textarea><br>
+    <button>ロボットに送信</button>
+</body>
+</html>
