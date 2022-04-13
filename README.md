@@ -6,6 +6,7 @@ Sample programs for communicating with Sota (CommU) using Web browser.
 ```
 git clone https://github.com/social-robotics-lab/robotcontroller_client_browser.git
 cd robotcontroller_client_browser
+mkdir src/wav
 docker build -t robotcontroller_client_browser .
 ```
 
